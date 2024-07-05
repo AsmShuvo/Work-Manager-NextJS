@@ -4,6 +4,24 @@ import { NextResponse } from "next/server";
 
 connectDB();
 
+export const GET = async (req) => {
+  let users = [];
+  try {
+    users = await User.find();
+    return NextResponse.json({
+      message: "successfully retrieved users",
+      success: true,
+      users,
+    });
+  } catch (err) {
+    console.log(err);
+    return NextResponse.json({
+      message: "failed to get users",
+      success: false,
+    });
+  }
+};
+
 export async function POST(req) {
   const { name, email, password, about, profileURL } = await req.json();
   console.log(name, email, password, about, profileURL);
@@ -32,13 +50,3 @@ export async function POST(req) {
 
   return res;
 }
-
-export function DELETE() {
-  console.log("Delete epi called");
-  return NextResponse.json({
-    message: "deleted!",
-    status: true,
-  });
-}
-
-export function PUT() {}
