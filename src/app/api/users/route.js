@@ -7,7 +7,7 @@ connectDB();
 export const GET = async (req) => {
   let users = [];
   try {
-    users = await User.find();
+    users = await User.find().select("-password"); // pass send korbena
     return NextResponse.json({
       message: "successfully retrieved users",
       success: true,

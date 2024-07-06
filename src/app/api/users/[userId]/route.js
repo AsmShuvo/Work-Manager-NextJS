@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 export const GET = async (req, { params }) => {
   const { userId } = params;
-  const user = await User.findById(userId);
+  const user = await User.findById(userId).select("-password");
   return NextResponse.json(user);
 };
 

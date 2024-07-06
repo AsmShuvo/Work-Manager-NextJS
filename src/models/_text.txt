@@ -1,0 +1,8 @@
+Schema + model > 
+
+Model{
+    title content addedDate status 
+}
+        ^
+        |
+       user
